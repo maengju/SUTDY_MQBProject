@@ -14,7 +14,7 @@ div#idDiv, div#pwdDiv {
 </style>
 </head>
 <body>
-<form name="loginForm" method="post" action="/MQBProject/member/login.do">
+<form name="loginForm" >
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<td width="100" align="center">아이디</td>

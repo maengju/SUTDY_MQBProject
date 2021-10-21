@@ -24,7 +24,7 @@ public class LoginService implements CommandProcess {
 		
 		//응답
 		if(memberDTO == null) {
-			return "/member/loginFail.jsp";
+			return "fail";
 		}else {			
 			//세션
 			HttpSession session = request.getSession(); //세션 생성
@@ -34,7 +34,7 @@ public class LoginService implements CommandProcess {
 			
 			session.setAttribute("memDTO", memberDTO);
 			
-			return "/member/loginOk.jsp";
+			return "ok";
 		}
 	}
 

@@ -33,8 +33,20 @@ $(function(){
 			$('#idDiv').html('아이디 입력');
 		else if($('input[name="pwd"]').val()=='')
 			$('#pwdDiv').html('비밀번호 입력');
-		else 
-			$('form[name="loginForm"]').submit();
+		else {
+			$.ajax({
+				url:"/MQBProject/member/login.do",
+				type:"post",
+				data: 'id='+$('#id').val()+'$pwd='+$('#pwd').val(),
+				dataType:"text",
+				success:function(data){
+					alert(data);
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}
 	});
 	
 });

@@ -89,7 +89,7 @@ public class ControlServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 		}
 		
-		//http://localhost:8080/mvcmember/member/writeForm.do 요청
+		//http://localhost:8080/MQBProject/member/writeForm.do 요청
 		String category = request.getServletPath(); // -> /member/writeForm.do
 		System.out.println("category = "+category);
 		
