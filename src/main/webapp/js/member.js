@@ -34,13 +34,24 @@ $(function(){
 		else if($('input[name="pwd"]').val()=='')
 			$('#pwdDiv').html('비밀번호 입력');
 		else {
+			
 			$.ajax({
-				url:"/MQBProject/member/login.do",
-				type:"post",
-				data: 'id='+$('#id').val()+'$pwd='+$('#pwd').val(),
-				dataType:"text",
+				url:'/MQBProject/member/login.do',
+				type:'post',
+				data: 'id='+$('#id').val()+'&pwd='+$('#pwd').val(),
+				dataType:'text',
 				success:function(data){
 					alert(data);
+					data = data.trim();
+					
+					if(data == 'ok'){
+						location.href='index.jsp';
+					}else if(data=='fail'){
+						$('#loginResult').text('로그인 실패');
+						$('#loginResult').css('color','red');
+						$('#loginResult').css('font-size','15pt');
+						$('#loginResult').css('font-weight','bold');
+					}
 				},
 				error:function(err){
 					console.log(err);

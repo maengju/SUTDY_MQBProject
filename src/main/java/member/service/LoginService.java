@@ -18,14 +18,14 @@ public class LoginService implements CommandProcess {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		
+		
 		//DB
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		MemberDTO memberDTO = memberDAO.login(id, pwd);
 		
 		//응답
-		if(memberDTO == null) {
-			return "fail";
-		}else {			
+		if(memberDTO != null) {
+			
 			//세션
 			HttpSession session = request.getSession(); //세션 생성
 			session.setAttribute("memName", memberDTO.getName());
@@ -33,9 +33,9 @@ public class LoginService implements CommandProcess {
 			session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
 			
 			session.setAttribute("memDTO", memberDTO);
-			
-			return "ok";
-		}
+		}	
+		return "/member/login.jsp";
+		
 	}
 
 }

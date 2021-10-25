@@ -40,6 +40,8 @@ div#idDiv, div#pwdDiv {
 			</td>
 		</tr>
 	</table>
+	<br><br>
+	<div id="loginResult"></div>
 </form>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
