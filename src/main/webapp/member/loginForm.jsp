@@ -1,20 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
 <style type="text/css">
-div#idDiv, div#pwdDiv {
+div#idDiv, div#pwdDiv ,div#repwdDiv ,div#nameDiv{
 	color: red;
 	font-size: 8pt;
 	font-weight: bold;
 }
 </style>
-</head>
-<body>
-<form name="loginForm" >
+
+<form name="loginForm" id="loginForm">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<td width="100" align="center">아이디</td>
@@ -46,9 +40,6 @@ div#idDiv, div#pwdDiv {
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
-</body>
-</html>
-
 
 
 

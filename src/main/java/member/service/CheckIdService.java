@@ -19,11 +19,8 @@ public class CheckIdService implements CommandProcess {
 		boolean exist = memberDAO.isCheckId(id);
 				
 		//응답
-		request.setAttribute("id", id);
-		if(exist)
-			return "/member/checkIdFail.jsp"; //사용 불가능
-		else
-			return "/member/checkIdOk.jsp"; //사용 가능
+		request.setAttribute("exist", exist);
+		return "/member/checkId.jsp"; //사용 가능
 		
 	}
 

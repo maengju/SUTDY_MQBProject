@@ -2,23 +2,29 @@ $(function(){
 	//회원가입
 	$('#writeBtn').click(function(){
 		$('#nameDiv').empty();
-		$('#idDiv').empty();
-      	$('#pwdDiv').empty();
+		$('#writeForm #idDiv').empty();
+      	$('#writeForm #pwdDiv').empty();
       	$('#repwdDiv').empty();
 
 		//name 속성
 		if($('input[name="name"]').val() == '') {
 			$('#nameDiv').html('이름 입력');
 			$('#name').focus();
-		}else if($('input[name="id"]').val()=='')
-			$('#idDiv').html('아이디 입력');
-		else if($('input[name="pwd"]').val()=='')
-			$('#pwdDiv').html('비밀번호 입력');
-		else if($('input[name="pwd"]').val() != $('input[name="repwd"]').val())
+			
+		} else if ($('#writeForm #id').val() == '') {
+			$('#writeForm #idDiv').html('아이디를 입력하세요');
+		} else if ($('#writeForm pwd').val() == '') {
+			$('#writeForm #pwdDiv').html('비밀번호를 입력하세요');
+
+
+		} else if ($('#writeForm #pwd').val() != $('input[name="repwd"]').val())
 			$('#repwdDiv').html('비밀번호 틀림');
 			
-		else if($('#id').val() != $('#check').val())
-			$('#idDiv').html('중복체크 하세요');
+		else if($('#writeForm #id').val() != $('#check').val()){
+			$('#writeForm #idDiv').html('중복체크 하세요');
+			$('#writeForm #idDiv').css('color','red');
+		}
+			
 		
 		else 
 			$('form[name="writeForm"]').submit();
@@ -26,13 +32,13 @@ $(function(){
 	
 	//로그인
 	$('#loginBtn').click(function(){
-		$('#idDiv').empty();
-      	$('#pwdDiv').empty();
+		$('#loginForm #idDiv').empty();
+      	$('#loginForm #pwdDiv').empty();
 
-		if($('input[name="id"]').val()=='')
-			$('#idDiv').html('아이디 입력');
-		else if($('input[name="pwd"]').val()=='')
-			$('#pwdDiv').html('비밀번호 입력');
+		if($('#loginForm #id').val()=='')
+			$('#loginForm #idDiv').html('아이디 입력');
+		else if($('#loginForm #id').val()=='')
+			$('#loginForm #pwdDiv').html('비밀번호 입력');
 		else {
 			
 			$.ajax({
@@ -62,38 +68,71 @@ $(function(){
 	
 });
 
-//우편번호
+
 
 
 //아이디 중복 체크
-$('#checkIdBtn').click(function(){
-	//var id = document.getElementById("id").value;
-	var id = $('#id').val();
-	if(id == "")
-		alert("먼저 아이디를 입력하세요");
-	else
-		window.open("/mvcmember/member/checkId.do?id="+id, "checkId", "width=400 height=200 top=200 left=700");	
+/*$('#writeForm #id').change(function(){});*/
+
+$('#writeForm #id').focusout(function(){
+	$('#writeForm #idDiv').empty();
+	
+	if($('#writeForm #id').val()==''){
+		$('#writeForm #idDiv').html('먼저 아이디 입력');
+		$('#writeForm #idDiv').css('color','red');
+	}else{
+		$.ajax({
+			url:'/MQBProject/member/checkId.do',
+			type:'post',
+			data:'id='+$('#writeForm #id').val(),
+			dataType:'text',
+			success:function(data){
+				alert(data);
+				data= data.trim();
+				if(data=='exist'){
+					$('#writeForm #idDiv').html('사용 불가');
+					$('#writeForm #idDiv').css('color','red');
+				}else if(data=='non_exist'){
+					$('#writeForm #idDiv').html('사용 가능');
+					$('#writeForm #idDiv').css('color','blue');
+					$('#check').val($('#writeForm #id').val());
+				}
+			},
+			error:function(err){
+				alert(err);
+			}
+		});
+	}
 });
 
-$('#checkIdClose').click(function(){
-	//alert($('#checkId').val());
-	
-	/************** 
-	//opener.document.getElementById("id").value = $('#checkId').val();
-	opener.writeForm.id.value = $('#checkId').val();
-	window.close();
-	opener.writeForm.pwd.focus();
-	*****************/
-	
-	$('#id', opener.document).val($('#checkId').val());
-	$('#check', opener.document).val($('#checkId').val()); //중복체크 버튼을 눌렀는지 확인
-	window.close();
-	$('#pwd', opener.document).focus();
-});
 
+
+//우편번호 check
 $('#zipcodeBtn').click(function(){
-	window.open("/mvcmember/member/checkPost.do", "checkPost", "width=500 height=500 top=200 left=700");
+	window.open("/MQBProject/member/checkPost.do", "checkPost", "width=500 height=500 top=200 left=700");
 });
+
+$('#checkPostSearchBtn').click(function(){
+	$.ajax({
+		url:'/MQBProject/member/checkPostSearch.do',
+		type:'post',
+		data:/*{
+			'sido':$('#sido').val(),
+			'sigungu':$('#sigungu').val(),
+			'roadname':$('#roadname').val()
+		}*/
+		$('#checkPostForm').serrialize(),
+		dataType:'json',
+		success:function(data){
+			alert(JSON.stringify(data));
+		},
+		error(err){
+			alert(err);
+		}	
+	});
+	
+});
+
 
 $('.addressA').click(function(){
 	//alert($(this).text()); - 주소

@@ -14,12 +14,12 @@ td {
 </style>
 </head>
 <body>
-<form action="/mvcmember/member/checkPost.do">
+<form id="checkPostForm">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<td align="center" width="100">시도</td>
 			<td align="center">
-				<select name="sido">
+				<select name="sido" id="sido">
 					<option>시도선택</option>
 					<option value="서울">서울</option>
 					<option value="인천">인천</option>
@@ -41,14 +41,14 @@ td {
 				</select>
 			</td>
 			<td align="center" width="100">시.군.구</td>
-			<td align="center"><input type="text" name="sigungu" /></td>
+			<td align="center"><input type="text" name="sigungu" id="sigungu" /></td>
 		</tr>
 		
 		<tr>
 			<td align="center">도로명</td>
 			<td colspan="3">
-				<input type="text" name="roadname" style="width: 250px;" />
-               	<input type="submit" value="검색" />
+				<input type="text" name="roadname" id="roadname" style="width: 250px;" />
+               	<input type="button" id="checkPostSearchBtn" value="검색" />
 			</td>
 		</tr>
 		
@@ -85,14 +85,6 @@ td {
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
-<script type="text/javascript">
-function checkPostClose(zipcode, address) {
-	opener.writeForm.zipcode.value = zipcode;
-	opener.writeForm.addr1.value = address;
-	window.close();
-	opener.writeForm.addr2.focus();
-}
-</script>
 </body>
 </html>
 

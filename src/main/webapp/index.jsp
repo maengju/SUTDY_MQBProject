@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,11 @@ footer{
 <header>
 
 	<h1>
-		<img width="100px" height="70px" alt="선생님..." src="image/선생님.png">MVC 기반의 미니 프로젝트
+		<img width="100px" height="70px" alt="선생님..." 
+		
+		src="/MQBProject/image/선생님.png" onclick="location.href='/MQBProject/index.jsp'"
+		style="cusor:pointer;"
+		>MVC 기반의 미니 프로젝트
 	</h1>
 	
 	<jsp:include page="main/menu.jsp"/>
@@ -81,11 +86,13 @@ footer{
 	</nav>
 	
 	<section>
-		<h1>
-			홈페이지를 방문해주셔서 감사합니다.<br>
-			Have a nice day<br>
-			<img width="200px" height="200px" alt="쭈욱" src="image/쭈욱.png">
-		</h1>
+	<c:if test="${empty display }">
+		<jsp:include page="main/body.jsp"></jsp:include>
+	</c:if>
+	<c:if test="${not empty display }">
+		<jsp:include page="${display }"></jsp:include>
+	</c:if>
+		
 	</section>
 	
 	

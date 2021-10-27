@@ -7,4 +7,16 @@
  	<select id="login" parameterType="java.util.Map" resultType="member.bean.MemberDTO">
  		select * from member where id=#{id} and pwd=#{pwd}
  	</select>
+ 	
+ 	<!-- Id 중복 check -->
+ 	<select id="isCheckID" parameterType="java.lang.String" resultType="member.bean.MemberDTO">
+ 		select * from member where id=#{id}
+ 	</select>
+ 	<!-- 우편번호 -->
+ 	<select id="getZipcodeList" parameterType="java.util.Map" resultType="zipcode">
+ 		select * from newzipcode where
+ 		 sido like '%'||#{sido}||'%' and 
+ 		 sigungu like '%'||#{sigungu}||'%' and 
+ 		 roadname like '%'||#{roadname}||'%'
+ 	</select>
  </mapper>
