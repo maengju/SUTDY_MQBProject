@@ -1,5 +1,7 @@
 package board.dao;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,16 +16,17 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import board.bean.BoardDTO;
 
 public class BoardDAO {
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
-	
-	private DataSource ds;
 	
 	private static BoardDAO instance;
+	private SqlSessionFactory sqlSessionFactory;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 	
@@ -38,15 +41,26 @@ public class BoardDAO {
 	
 	public BoardDAO() {
 		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");//Tomcat의 경우
-			
-		} catch (NamingException e) {
+			Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+
+	public void boardWrite(Map<String, String> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.insert("boardSQL.boardWrite",map);
+		sqlSession.commit();
+		sqlSession.close();
 	}
 	
-	//public void boardWrite(BoardDTO boardDTO) {
+	
+	
+/*
+ 	//public void boardWrite(BoardDTO boardDTO) {
 	public void boardWrite(Map<String, String> map) {
 		String sql = "insert into board(seq, id, name, email, subject, content, ref) "
 				+ "values(seq_board.nextval,?,?,?,?,?,seq_board.currval)";
@@ -131,6 +145,7 @@ public class BoardDAO {
 		return list;
 	}
 	
+	
 	public BoardDTO boardView(int seq) {
 		BoardDTO boardDTO = null;
 		String sql = "select * from board where seq=?";
@@ -200,12 +215,9 @@ public class BoardDAO {
 		
 		return totalA;
 	}
+ */
+
 }
-
-
-
-
-
 
 
 

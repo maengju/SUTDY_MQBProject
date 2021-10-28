@@ -26,19 +26,6 @@ public class BoardWriteService implements CommandProcess {
 		String id = (String) session.getAttribute("memId");
 		String email = (String) session.getAttribute("memEmail");
 		
-		//MemberDTO memberDTO = (MemberDTO) session.getAttribute("membDTO");
-		//String name = memberDTO.getName();
-		//String id = memberDTO.getId();
-		//String email = memberDTO.getEmail1()+"@"+memberDTO.getEmail2()
-		//-------------------
-		
-		//BoardDTO boardDTO = new BoardDTO();
-		//boardDTO.setId(id);
-		//boardDTO.setName(name);
-		//boardDTO.setEmail(email);
-		//boardDTO.setSubject(subject);
-		//boardDTO.setContent(content);
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("name", name);
@@ -48,7 +35,6 @@ public class BoardWriteService implements CommandProcess {
 		
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		//boardDAO.boardWrite(boardDTO);
 		boardDAO.boardWrite(map);
 		
 		//응답

@@ -77,6 +77,14 @@ public class MemberDAO {
 		sqlSession.close(); 
 		return list;
 	}
+
+	public void write(MemberDTO memberDTO) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();//생성
+		sqlSession.insert("memberSQL.write",memberDTO);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
 	
 	/*
 	 * public void write(MemberDTO memberDTO) { String sql =

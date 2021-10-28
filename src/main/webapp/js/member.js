@@ -13,10 +13,8 @@ $(function(){
 			
 		} else if ($('#writeForm #id').val() == '') {
 			$('#writeForm #idDiv').html('아이디를 입력하세요');
-		} else if ($('#writeForm pwd').val() == '') {
+		} else if ($('#writeForm #pwd').val() == '') {
 			$('#writeForm #pwdDiv').html('비밀번호를 입력하세요');
-
-
 		} else if ($('#writeForm #pwd').val() != $('input[name="repwd"]').val())
 			$('#repwdDiv').html('비밀번호 틀림');
 			
@@ -27,7 +25,19 @@ $(function(){
 			
 		
 		else 
-			$('form[name="writeForm"]').submit();
+			//$('form[name="writeForm"]').submit();
+			$.ajax({
+				url:'/MQBProject/member/write.do',
+				type:'post',
+				data:$('#writeForm').serialize(),
+				success:function(){
+					alert("회원가입을 환영합니다.");
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+			
 	});
 	
 	//로그인
@@ -47,11 +57,11 @@ $(function(){
 				data: 'id='+$('#id').val()+'&pwd='+$('#pwd').val(),
 				dataType:'text',
 				success:function(data){
-					alert(data);
+					
 					data = data.trim();
 					
 					if(data == 'ok'){
-						location.href='index.jsp';
+						location.href='/MQBProject/index.jsp';
 					}else if(data=='fail'){
 						$('#loginResult').text('로그인 실패');
 						$('#loginResult').css('color','red');
@@ -112,19 +122,54 @@ $('#zipcodeBtn').click(function(){
 	window.open("/MQBProject/member/checkPost.do", "checkPost", "width=500 height=500 top=200 left=700");
 });
 
+
 $('#checkPostSearchBtn').click(function(){
 	$.ajax({
 		url:'/MQBProject/member/checkPostSearch.do',
 		type:'post',
-		data:/*{
-			'sido':$('#sido').val(),
-			'sigungu':$('#sigungu').val(),
-			'roadname':$('#roadname').val()
-		}*/
-		$('#checkPostForm').serrialize(),
+		data:$('#checkPostForm').serialize(),
 		dataType:'json',
 		success:function(data){
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
+			
+			$('#zipcodeTable tr:gt(2)').empty();
+			
+			$.each(data.list,function(index,items){
+				var address = items.sido + '' 
+							+items.sigungu+''
+							+items.yubmyundong+''
+							+items.ri+''
+							+items.roadname+''
+							+items.buildingname;
+				address = address.replace(/undefined/g,'');			
+				$('<tr/>').append($('<td/>',{
+					align:'center',
+					text: items.zipcode
+				})).append($('<td/>',{
+					colspan:3,
+					
+				}).append($('<a/>',{
+					href:'#',
+					text:address,
+					class:'addressA'
+				}))).appendTo($('#zipcodeTable'));			
+							
+			});//each
+			
+			//주소를 클릭하면 회원가입 창으로 이동
+			$('.addressA').click(function() {
+				//alert($(this).text()); - 주소
+				//alert($(this).parent().prev().text()); - 우편번호
+
+				$('#zipcode', opener.document).val($(this).parent().prev().text());
+				$('#addr1', opener.document).val($(this).text());
+				window.close();
+				$('#addr2', opener.document).focus();
+			});
+
+			
+			
+			
 		},
 		error(err){
 			alert(err);
@@ -134,15 +179,7 @@ $('#checkPostSearchBtn').click(function(){
 });
 
 
-$('.addressA').click(function(){
-	//alert($(this).text()); - 주소
-	//alert($(this).parent().prev().text()); - 우편번호
-	
-	$('#zipcode', opener.document).val($(this).parent().prev().text());
-	$('#addr1', opener.document).val($(this).text());
-	window.close();
-	$('#addr2', opener.document).focus();
-});
+
 
 
 

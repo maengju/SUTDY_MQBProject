@@ -19,4 +19,21 @@
  		 sigungu like '%'||#{sigungu}||'%' and 
  		 roadname like '%'||#{roadname}||'%'
  	</select>
+ 	
+ 	<!-- 회원가입 -->
+ 	<insert id="write" parameterType="member">
+ 		insert into member values(#{name}
+ 									,#{id}
+ 									,#{pwd}
+ 									,#{gender}
+ 									,#{email1}
+ 									,#{email2}
+ 									,#{tel1}
+ 									,#{tel2}
+ 									,#{tel3}
+ 									,#{zipcode}
+ 									,#{addr1}
+ 									,#{addr2}
+ 									,sysdate)
+ 	</insert>
  </mapper>

@@ -6,7 +6,7 @@
 </style>
 </head>
 <body>
-<form name="writeForm" id="writeForm" method="post" action="">
+<form name="writeForm" id="writeForm" >
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<td width="100" align="center">이름</td>

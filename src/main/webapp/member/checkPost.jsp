@@ -11,11 +11,27 @@
 td {
 	font-size: 8pt;
 }
+.addressA:link{
+	color : black;
+	text-decoration: none;
+}
+.addressA:visited{
+	color : black;
+	text-decoration: none;
+}
+.addressA:hover{
+	color : green;
+	text-decoration: underline;
+}
+.addressA:active{
+	color : black;
+	text-decoration: none;
+}
 </style>
 </head>
 <body>
 <form id="checkPostForm">
-	<table border="1" cellspacing="0" cellpadding="5">
+	<table id = "zipcodeTable" border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<td align="center" width="100">시도</td>
 			<td align="center">
@@ -57,28 +73,6 @@ td {
 			<td align="center" colspan="3">주소</td>
 		</tr>
 
-		<c:if test="${list != null }">
-			<c:forEach var="zipcodeDTO" items="${requestScope.list }">
-				<c:set var="address">
-					${zipcodeDTO.sido 
-					} ${zipcodeDTO.sigungu 
-					} ${zipcodeDTO.yubmyundong 
-					} ${zipcodeDTO.ri 
-					} ${zipcodeDTO.roadname 
-					} ${zipcodeDTO.buildingname }
-				</c:set>
-				
-				<tr>
-					<td align="center">${zipcodeDTO.zipcode }</td>
-					
-					<td colspan="3">
-						<%-- <a href="#" onclick="checkPostClose('${zipcodeDTO.zipcode }','${address }')">${address }</a> --%>
-						
-						<a href="#" class="addressA">${address }</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</c:if>
 
 	</table>
 </form>

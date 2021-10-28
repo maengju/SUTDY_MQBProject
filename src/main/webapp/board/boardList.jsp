@@ -2,19 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
-th {
-	font-size: 16px;
-}
 
-td {
-	font-size: 13px;
-}
 
 #subjectA:link { color: black; text-decoration: none; }
 #subjectA:visited { color: black; text-decoration: none; }
@@ -31,8 +20,7 @@ td {
 }
 
 </style>
-</head>
-<body>
+
 <table border="1" cellspacing="0" cellpadding="5" frame="hsides" rules="rows">
 	<tr>
 		<th width="100">글번호</th>
@@ -66,9 +54,6 @@ td {
 		</c:if>
 	</c:forEach>
 </div>
-
-</body>
-</html>
 
 
 

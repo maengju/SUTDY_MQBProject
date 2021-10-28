@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style type="text/css">
-div#idDiv, div#pwdDiv ,div#repwdDiv ,div#nameDiv{
+div#idDiv, div#pwdDiv ,div#repwdDiv ,div#nameDiv , div#subjectDiv, div#contentDiv{
 	color: red;
 	font-size: 8pt;
 	font-weight: bold;
+}
+
+th {
+	font-size: 16px;
+}
+
+td {
+	font-size: 13px;
 }
 </style>
 

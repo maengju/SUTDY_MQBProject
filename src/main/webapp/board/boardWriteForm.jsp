@@ -1,21 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-div {
-	color: red;
-	font-size: 8pt;
-	font-weight: bold;
-}
-</style>
-</head>
-<body>
+
 <h3> 글쓰기 </h3> 
-<form name="boardWriteForm" method="post" action="/mvcmember/board/boardWrite.do"> 
+<form name="boardWriteForm"  id="boardWriteForm" > 
 	<table cellspacing="0" border="1" cellpadding="5">
 	<tr>
 		<td width="50" align="right">제목</td>
@@ -48,21 +35,29 @@ $(function(){
 		$('#subjectDiv').empty();
 		$('#contentDiv').empty();
 		
-		if($('input[name=subject]').val() == '') {
+		if($('#subject').val() == '') {
 			$('#subjectDiv').html('제목 입력'); 
 			$('#subject').focus();
 		}
-		else if($('textarea[name=content]').val() == ''){
+		else if($('#content').val() == ''){
 			$('#contentDiv').html('내용 입력');
 			$('#content').focus();
 		}
 		else 
-			$('form[name=boardWriteForm]').submit();
+			$.ajax({
+				url:'/MQBProject/board/boardWrite.do',
+				type:'post',
+				data: $('#boardWriteForm').serialize(),
+				success:function(){
+					location.href="/MQBproject/board/boardList.do?pg=1"
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
 	});
 });
 </script>
-</body>
-</html>
 
 
 

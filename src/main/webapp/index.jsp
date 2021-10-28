@@ -69,8 +69,13 @@ footer{
 		<img width="100px" height="70px" alt="선생님..." 
 		
 		src="/MQBProject/image/선생님.png" onclick="location.href='/MQBProject/index.jsp'"
-		style="cusor:pointer;"
+		style="cursor: pointer"
 		>MVC 기반의 미니 프로젝트
+		<img width="100px" height="70px" alt="선생님..." 
+		
+		src="/MQBProject/image/선생님.png" onclick="location.href='/MQBProject/index.jsp'"
+		style="cursor: pointer"
+		>
 	</h1>
 	
 	<jsp:include page="main/menu.jsp"/>
@@ -102,7 +107,7 @@ footer{
 
 
 <footer >
-	<p>비트캠프</p>
+	<p>비트캠프 02 888 8888</p>
 </footer>
 
 
