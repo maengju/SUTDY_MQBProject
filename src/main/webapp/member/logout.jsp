@@ -4,13 +4,6 @@
 
 
 
-<script type="text/javascript">
-window.onload=function(){
-	alert("로그아웃");
-}
-</script>
-
-
 
 
 

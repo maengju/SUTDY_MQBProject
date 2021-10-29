@@ -49,7 +49,8 @@ $(function(){
 				type:'post',
 				data: $('#boardWriteForm').serialize(),
 				success:function(){
-					location.href="/MQBproject/board/boardList.do?pg=1"
+					alert("작성 완료");
+					location.href="/MQBProject/board/boardList.do?pg=1"
 				},
 				error:function(err){
 					console.log(err);

@@ -1,5 +1,7 @@
 package board.bean;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -18,6 +20,6 @@ public class BoardDTO {
 	private int reply;
 	
 	private int hit;
-	private String logtime;
+	private Date logtime;
 	
 }

@@ -40,5 +40,5 @@
 		<a href="/MQBProject/board/boardWriteForm.do">글쓰기</a>
 		</li>
 	</c:if>
-	<li><a href="/MQBProject/board/boardList.do">목록</a></li>
+	<li><a href="/MQBProject/board/boardList.do?pg=1">목록</a></li>
 </ul>
