@@ -98,8 +98,8 @@
 	</table>
 </form>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../js/member.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/member.js"></script> -->
 
 
 

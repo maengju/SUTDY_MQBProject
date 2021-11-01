@@ -27,5 +27,6 @@
  	<mappers>
  		<mapper resource="member/dao/memberMapper.xml"/>
  		<mapper resource="board/dao/boardMapper.xml"/>
+ 		<mapper resource="guestbook/dao/guestbookMapper.xml"/>
  	</mappers>
  </configuration>

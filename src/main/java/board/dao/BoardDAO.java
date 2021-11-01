@@ -64,11 +64,10 @@ public class BoardDAO {
 		return list;
 	}
 
-	public BoardDTO boardView(int seq) {
+	public BoardDTO getBoardView(String seq) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.boardView", seq);
-		
-		
+		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.getBoardView", seq);
+		sqlSession.close();
 		return boardDTO;
 	}
 	

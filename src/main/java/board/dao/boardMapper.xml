@@ -25,7 +25,8 @@
 	 	
  	</select>
  	
- 	<select id="boardView" parameterType="Integer" resultType="board">
+ 	<!-- view -->
+ 	<select id="getBoardView" parameterType="java.lang.String" resultType="board">
  		select * from board where seq=#{seq}
  	</select>
  </mapper>

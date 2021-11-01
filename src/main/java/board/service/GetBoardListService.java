@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -33,6 +34,10 @@ public class GetBoardListService implements CommandProcess {
 
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		List<BoardDTO> list = boardDAO.getBoardList(map);
+		
+		//세션
+		HttpSession session = request.getSession();
+		String memId = (String)session.getAttribute("memId");
 		
 		
 		//List -> JSON변환
@@ -61,6 +66,8 @@ public class GetBoardListService implements CommandProcess {
 			}//for
 			
 			json.put("list", array);
+			//세션 -> JSON변환
+			json.put("memId", memId);
 			
 		}
 		System.out.println("json ="+json);

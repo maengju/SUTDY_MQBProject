@@ -5,10 +5,10 @@
 <style type="text/css">
 
 
-#subjectA:link { color: black; text-decoration: none; }
-#subjectA:visited { color: black; text-decoration: none; }
-#subjectA:hover { color: darkgreen; text-decoration: underline; }
-#subjectA:active { color: black; text-decoration: none; }
+.subjectA:link { color: black; text-decoration: none; }
+.subjectA:visited { color: black; text-decoration: none; }
+.subjectA:hover { color: darkgreen; text-decoration: underline; }
+.subjectA:active { color: black; text-decoration: none; }
 
 #currentPaging {
 	color: red;

@@ -1,19 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style type="text/css">
-div#idDiv, div#pwdDiv ,div#repwdDiv ,div#nameDiv , div#subjectDiv, div#contentDiv{
-	color: red;
-	font-size: 8pt;
-	font-weight: bold;
-}
 
-th {
-	font-size: 16px;
-}
-
-td {
-	font-size: 13px;
-}
 </style>
 
 <form name="loginForm" id="loginForm">
@@ -46,9 +34,9 @@ td {
 	<div id="loginResult"></div>
 </form>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
-
+ -->
 
 
 

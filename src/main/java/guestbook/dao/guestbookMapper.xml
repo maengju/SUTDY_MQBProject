@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guestbookSQL">
+	<!-- 만약 오라클 컬럼과 DTO 필드며이 서로 틀릴때 -->
+ 	<resultMap type="guestbook.bean.GuestbookDTO" id="userResult">
+ 		<!-- property="필드명" column="오라클 필드명" -->
+ 		<result property="guestSubject" column="SUBJECT"/>
+ 		<result property="guestContent" column="CONTENT"/>
+ 		
+ 	</resultMap>
+
+
+	<!-- 방명록작성 -->
+	<insert id="guestbookWrite" parameterType="java.util.Map">
+		insert into guestbook(seq,name,email,subject,content,logtime)
+		values(seq_guestbook.nextval
+				,#{name}
+				,#{email}
+				,#{guestSubject}
+				,#{guestContent}
+				,sysdate)
+	</insert>
+	
+	<!-- 방명록 리스트 -->
+	<select id="getGuestbookList" parameterType="java.util.Map" resultMap="userResult">
+		select * from 
+	 	(select rownum rn, tt.* from 
+	 	(select * from guestbook order by seq desc) tt)
+	 	where rn between #{startNum} and #{endNum}
+	</select>
+</mapper>

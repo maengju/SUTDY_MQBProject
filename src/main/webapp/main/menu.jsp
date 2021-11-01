@@ -40,5 +40,14 @@
 		<a href="/MQBProject/board/boardWriteForm.do">글쓰기</a>
 		</li>
 	</c:if>
-	<li><a href="/MQBProject/board/boardList.do?pg=1">목록</a></li>
+	<li><a href="/MQBProject/board/boardList.do?pg=1">글 목록</a></li>
+	
+	<c:if test="${memId!= null}">
+		<li>
+		<a href="/MQBProject/guestbook/guestbookWriteForm.do">방명록 작성</a>
+		</li>
+	</c:if>
+	<li><a href="/MQBProject/guestbook/guestbookList.do?pg=1">방명록 보기</a></li>
+	
+	
 </ul>

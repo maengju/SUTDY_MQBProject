@@ -8,6 +8,7 @@
 <title>index</title>
 
 <style type="text/css">
+
 body{
 	margin: 0;
 	padding: 0;
@@ -55,7 +56,21 @@ footer{
 	height: 10%;
 }
 
+div#idDiv, div#pwdDiv ,div#repwdDiv 
+,div#nameDiv , div#subjectDiv
+, div#contentDiv, div#guestContentDiv, div#guestSubjectDiv{
+	color: red;
+	font-size: 8pt;
+	font-weight: bold;
+}
 
+th {
+	font-size: 16px;
+}
+
+td {
+	font-size: 13px;
+}
 
 </style>
 
@@ -119,7 +134,7 @@ footer{
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript" src="/MQBProject/js/member.js"></script>
 
 
 </body>
