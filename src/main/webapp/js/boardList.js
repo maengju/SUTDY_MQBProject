@@ -40,7 +40,12 @@ $(function(){
 					}
 				});
 				
+				
+				
 			});//each
+			
+			//페이징 처리
+			$('#boardPagingDiv').html(data.boardPaging);
 		},
 		error: function(err) {
 			console.log(err);

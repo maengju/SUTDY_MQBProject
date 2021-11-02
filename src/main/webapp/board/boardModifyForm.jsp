@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 
 
-<h3> 글쓰기 </h3> 
-<form name="boardWriteForm"  id="boardWriteForm" > 
+
+<h3> 글수정</h3> 
+<form name="boardModifyForm"  id="boardModifyForm" > 
 	<input type="hidden" id="seq" name="seq" value="${seq }">
 	<input type="hidden" id="pg" name="pg" value="${pg }">
+	
 	<table cellspacing="0" border="1" cellpadding="5">
 	<tr>
 		<td width="50" align="right">제목</td>
@@ -23,7 +25,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="button" id="boardWriteBtn" value="글쓰기">
+			<input type="button" id="boardModifyBtn" value="글수정">
 			<input type="reset" value="다시작성">
 		</td>
 	</tr>
@@ -33,9 +35,23 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#boardWriteBtn').click(function(){
-		alert('버튼~~');
-		
+	$.ajax({
+		url:'/MQBProject/board/getBoardView.do',
+		type:'post',
+		data: {'seq': $('#seq').val()},
+		dataType:'json',
+		success:function(data){
+			console.log(JSON.stringify(data));
+			
+			$('#subject').val(data.subject);
+			$('#content').val(data.content);
+		},
+		error:function(err){
+			console.log(err);
+		}
+	});
+	
+	$('#boardModifyBtn').click(function(){
 		//초기화 과정
 		$('#subjectDiv').empty();
 		$('#contentDiv').empty();
@@ -50,12 +66,12 @@ $(function(){
 		}
 		else 
 			$.ajax({
-				url: '/MQBProject/board/boardWrite.do',
+				url: '/MQBProject/board/boardModify.do',
 				type: 'post',
-				data: $('#boardWriteForm').serialize(),
+				data: $('#boardModifyForm').serialize(),
 				success: function(){
-					alert("글쓰기 성공");
-					location.href="/MQBProject/board/boardList.do?pg=1";
+					alert("글 수정 성공");
+					location.href="/MQBProject/board/boardList.do?pg="+$('#pg').val();
 				},
 				error: function(err){
 					console.log(err);
@@ -64,9 +80,4 @@ $(function(){
 	});
 });
 </script>
-
-
-
-
-
-
+    

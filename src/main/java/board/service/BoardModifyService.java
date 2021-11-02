@@ -9,48 +9,29 @@ import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
-import board.bean.BoardDTO;
 import board.dao.BoardDAO;
 
-public class BoardWriteService implements CommandProcess {
+public class BoardModifyService  implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		//데이터
-
+		int seq = Integer.parseInt(request.getParameter("seq"));
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
+
 		
-		HttpSession session = request.getSession();
-		
-		String name = (String) session.getAttribute("memName");
-		String id = (String) session.getAttribute("memId");
-		String email = (String) session.getAttribute("memEmail");
-		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
-		map.put("name", name);
-		map.put("email", email);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("seq",seq);
 		map.put("subject", subject);
 		map.put("content", content);
-		
-		//DB
+
+		// DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		boardDAO.boardWrite(map);
-		
-		//응답
-		return "/board/boardWrite.jsp";
+		boardDAO.boardModify(map);
+
+		// 응답
+		return "/board/boardModify.jsp";
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

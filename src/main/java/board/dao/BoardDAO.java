@@ -70,6 +70,20 @@ public class BoardDAO {
 		sqlSession.close();
 		return boardDTO;
 	}
+
+	public void boardModify(Map<String, Object> map) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.boardModify", map);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
+	public int getTotalA() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int totalA = sqlSession.selectOne("boardSQL.getTotalA");
+		sqlSession.close();
+		return totalA;
+	}
 	
 	
 	

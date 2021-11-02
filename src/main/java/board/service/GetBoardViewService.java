@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.control.CommandProcess;
 
@@ -23,6 +25,9 @@ public class GetBoardViewService implements CommandProcess  {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		BoardDTO boardDTO = boardDAO.getBoardView(seq);
 		
+		HttpSession session = request.getSession();
+		String memId= (String) session.getAttribute("memId");
+		
 		//JSON으로 변환
 		JSONObject json = new JSONObject();
 		json.put("seq", boardDTO.getSeq());
@@ -40,6 +45,7 @@ public class GetBoardViewService implements CommandProcess  {
 		json.put("hit", boardDTO.getHit());
 		json.put("logtime", sdf.format(boardDTO.getLogtime()));
 		
+		json.put("memId", memId);
 		
 		// 응답
 		request.setAttribute("boardDTO", json );

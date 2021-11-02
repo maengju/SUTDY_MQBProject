@@ -58,7 +58,8 @@ footer{
 
 div#idDiv, div#pwdDiv ,div#repwdDiv 
 ,div#nameDiv , div#subjectDiv
-, div#contentDiv, div#guestContentDiv, div#guestSubjectDiv{
+, div#contentDiv, div#guestContentDiv, div#guestSubjectDiv
+, div#boardModifyForm {
 	color: red;
 	font-size: 8pt;
 	font-weight: bold;

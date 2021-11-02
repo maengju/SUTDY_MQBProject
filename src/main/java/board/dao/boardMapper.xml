@@ -29,4 +29,17 @@
  	<select id="getBoardView" parameterType="java.lang.String" resultType="board">
  		select * from board where seq=#{seq}
  	</select>
+ 	
+ 	<!--  update  -->
+ 	<update id="boardModify" parameterType="java.util.Map">
+ 		update board set subject=#{subject}
+						,content=#{content} 
+						,logtime=sysdate where seq=#{seq}
+ 	</update>
+ 	
+ 	
+ 	<!-- total -->
+ 	<select id="getTotalA" resultType="int">
+ 		select count(*) from board
+ 	</select>
  </mapper>

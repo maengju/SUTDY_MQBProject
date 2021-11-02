@@ -37,19 +37,16 @@
 	
 	
 </table>
-<div style="width: 750px; text-align: center;">
-	<c:forEach var="i" begin="1" end="${totalP }">
-		<c:if test="${i == pg }">
-			[<a id="currentPaging" href="/mvcmember/board/boardList.do?pg=${i }">${i }</a>]
-		</c:if>
-		<c:if test="${i != pg }">
-			[<a id="paging" href="/mvcmember/board/boardList.do?pg=${i }">${i }</a>]
-		</c:if>
-	</c:forEach>
-</div>
+<div style="width: 750px; text-align: center; cursor: pointer;" id = "boardPagingDiv">???</div>
+
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/MQBProject/js/boardList.js"></script>
+<script type="text/javascript">
+function boardPaging(param_pg){
+	location.href='/MQBProject/board/boardList.do?pg='+param_pg;
+}
+</script>
 
 
