@@ -118,7 +118,8 @@ public class BoardDAO {
 		int ref = sqlSession.selectOne("boardSQL.boardDelete1", seq);
 		sqlSession.update("boardSQL.boardDelete2",ref);
 		
-		//
+		
+		
 		
 		
 		sqlSession.commit();
