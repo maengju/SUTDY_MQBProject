@@ -34,7 +34,7 @@
 	<input type="button" value="글수정" onclick="mode(1)">
 	<input type="button" value="글삭제" onclick="mode(2)">
 	</span>
-	<input type="button" value="답글">
+	<input type="button" value="답글" onclick="mode(3)">
 
 </form>
 
@@ -66,6 +66,10 @@ $(function(){
 		}
 		
 	});
+	
+	
+	
+	
 });
 </script>
 
@@ -79,7 +83,13 @@ function mode(num){
 		document.getElementById('boardViewForm').submit();
 		
 	}else if(num==2){
-		
+		document.getElementById('boardViewForm').method = 'post';
+		document.getElementById('boardViewForm').action = '/MQBProject/board/boardDelete.do';
+		document.getElementById('boardViewForm').submit();
+	}else if(num==3){
+		document.getElementById('boardViewForm').method = 'post';
+		document.getElementById('boardViewForm').action = '/MQBProject/board/boardReplyForm.do';
+		document.getElementById('boardViewForm').submit();
 	}
 }
 </script>

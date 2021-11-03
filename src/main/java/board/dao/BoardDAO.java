@@ -84,80 +84,47 @@ public class BoardDAO {
 		sqlSession.close();
 		return totalA;
 	}
+
 	
-	
-	
-/*
-	public BoardDTO boardView(int seq) {
-		BoardDTO boardDTO = null;
-		String sql = "select * from board where seq=?";
+	public void boardReply(Map<String, String> map) {
+		//원글
 		
-		try {
-			conn = ds.getConnection();
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, seq);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				boardDTO = new BoardDTO();
-				boardDTO.setSeq(rs.getInt("seq"));
-				boardDTO.setId(rs.getString("id"));
-				boardDTO.setName(rs.getString("name"));
-				boardDTO.setEmail(rs.getString("email"));
-				boardDTO.setSubject(rs.getString("subject"));
-				boardDTO.setContent(rs.getString("content"));
-				boardDTO.setRef(rs.getInt("ref"));
-				boardDTO.setLev(rs.getInt("lev"));
-				boardDTO.setStep(rs.getInt("step"));
-				boardDTO.setPseq(rs.getInt("pseq"));
-				boardDTO.setReply(rs.getInt("reply"));
-				boardDTO.setHit(rs.getInt("hit"));
-				boardDTO.setLogtime(sdf.format(rs.getDate("logtime")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-            	if(pstmt != null) pstmt.close();
-            	if(conn != null) conn.close();
-            } catch (SQLException e) {
-            	e.printStackTrace();
-            }
-		}
+		BoardDTO pDTO = getBoardView(map.get("pseq"));
 		
-		return boardDTO;
+		map.put("ref", pDTO.getRef()+"");//그룹번호
+		map.put("lev", pDTO.getLev()+1+"");
+		map.put("step", pDTO.getStep()+1+"");
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		//step update
+		sqlSession.update("boardSQL.boardReply1", pDTO);
+		
+		//insert
+		sqlSession.insert("boardSQL.boardReply2", map);
+		
+		//reply update
+		sqlSession.update("boardSQL.boardReply3", getBoardView(map.get("pseq")));
+		
+		sqlSession.commit();
+		sqlSession.close();
+		
 	}
-	
-	public int getTotalA() {
-		int totalA=0;
-		String sql = "select count(*) from board";
+
+	public void boardDelete(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		
-		try {
-			conn = ds.getConnection();
-			
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			rs.next();
-			totalA = rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-            	if(pstmt != null) pstmt.close();
-            	if(conn != null) conn.close();
-            } catch (SQLException e) {
-            	e.printStackTrace();
-            }
-		}
+		//원글 찾아서 reply -1 감소
+		int ref = sqlSession.selectOne("boardSQL.boardDelete1", seq);
+		sqlSession.update("boardSQL.boardDelete2",ref);
 		
-		return totalA;
+		//
+		
+		
+		sqlSession.commit();
+		sqlSession.close();
+
 	}
- */
 
 }
 

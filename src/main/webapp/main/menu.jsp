@@ -39,8 +39,15 @@
 		<li>
 		<a href="/MQBProject/board/boardWriteForm.do">글쓰기</a>
 		</li>
+		<li>
+		<a href="/MQBProject/imageboard/imageboardWriteForm.do">이미지 등록</a>
+		</li>
 	</c:if>
+	
+	
 	<li><a href="/MQBProject/board/boardList.do?pg=1">글 목록</a></li>
+	<li><a href="/MQBProject/imageboard/imageboardlist.do?pg=1">이미지 목록</a></li>
+	
 	
 	<c:if test="${memId!= null}">
 		<li>

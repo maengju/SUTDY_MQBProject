@@ -30,6 +30,18 @@ $(function(){
 					align:'center',
 					text:items.logtime
 				})).appendTo($('#boardListTable'));
+				//답글
+				for(var i=0; i<items.lev; i++){
+					$('#subject_'+items.seq).before('&emsp;');
+				}
+				
+				if(items.lev != 0){
+					$('#subject_'+items.seq).before($('<img>',{
+						src:'../image/reply.gif',
+						alt:'답글 이미지'
+					}));
+				}
+				
 				
 				//로그인 여부 확인
 				$('#subject_'+items.seq).click(function(){
