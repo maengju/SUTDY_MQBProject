@@ -46,7 +46,7 @@
 	
 	
 	<li><a href="/MQBProject/board/boardList.do?pg=1">글 목록</a></li>
-	<li><a href="/MQBProject/imageboard/imageboardlist.do?pg=1">이미지 목록</a></li>
+	<li><a href="/MQBProject/imageboard/imageboardList.do?pg=1">이미지 목록</a></li>
 	
 	
 	<c:if test="${memId!= null}">

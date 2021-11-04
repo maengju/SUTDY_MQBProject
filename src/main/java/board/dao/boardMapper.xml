@@ -73,13 +73,13 @@
  	
  	
  	<!--  delete -->
- 	<select id="boardDelete1" parameterMap="int">
+ 	<!-- <select id="boardDelete1" parameterMap="int">
  		select ref from board where seq=#{seq}
  	</select>
  	
  	<update id="boardDelete2" parameterType="int">
  		update board set reply=reply-1 where seq=#{ref}
- 	</update> 	
+ 	</update> 	 -->
  	
  	
  	

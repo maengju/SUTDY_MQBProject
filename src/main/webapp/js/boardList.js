@@ -30,6 +30,7 @@ $(function(){
 					align:'center',
 					text:items.logtime
 				})).appendTo($('#boardListTable'));
+				
 				//답글
 				for(var i=0; i<items.lev; i++){
 					$('#subject_'+items.seq).before('&emsp;');

@@ -44,14 +44,14 @@
 		
 		<tr>
 			<td colspan="2" >
-				<input type="file" name="img1">
+				<input type="file" name="image1">
 			</td>
 			
 		</tr>
 		
 		<tr>
 			<td colspan="2" >
-				<input type="file" name="img2">
+				<input type="file" name="image2">
 			</td>
 			
 		</tr>

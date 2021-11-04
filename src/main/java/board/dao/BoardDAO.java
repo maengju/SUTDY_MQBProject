@@ -111,21 +111,21 @@ public class BoardDAO {
 		
 	}
 
-	public void boardDelete(int seq) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
-		//원글 찾아서 reply -1 감소
-		int ref = sqlSession.selectOne("boardSQL.boardDelete1", seq);
-		sqlSession.update("boardSQL.boardDelete2",ref);
-		
-		
-		
-		
-		
-		sqlSession.commit();
-		sqlSession.close();
-
-	}
+	/*
+	 * public void boardDelete(int seq) { SqlSession sqlSession =
+	 * sqlSessionFactory.openSession();
+	 * 
+	 * //원글 찾아서 reply -1 감소 int ref = sqlSession.selectOne("boardSQL.boardDelete1",
+	 * seq); sqlSession.update("boardSQL.boardDelete2",ref);
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * sqlSession.commit(); sqlSession.close();
+	 * 
+	 * }
+	 */
 
 }
 
