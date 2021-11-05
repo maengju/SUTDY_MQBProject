@@ -23,7 +23,7 @@ public class ImageboardWriteService  implements CommandProcess  {
 													,realFolder
 													,5*1024*1024 //5mb
 													,"UTF-8"
-													,new DefaultFileRenamePolicy() // 같은이름이엿을때 뒤에 번호 붙여서 올려줌
+													//,new DefaultFileRenamePolicy() // 같은이름이엿을때 뒤에 번호 붙여서 올려줌
 													);
 		
 		
@@ -33,8 +33,8 @@ public class ImageboardWriteService  implements CommandProcess  {
 		int imagePrice = Integer.parseInt(multi.getParameter("imagePrice"));
 		int imageQty = Integer.parseInt(multi.getParameter("imageQty"));
 		String imageContent = multi.getParameter("imageContent");
-		//String image1 = multi.getOriginalFileName("image1");
-		String image1 = multi.getFilesystemName("image1");
+		String image1 = multi.getOriginalFileName("image1");
+		//String image1 = multi.getFilesystemName("image1");
 		
 		ImageboardDTO imageboardDTO = new ImageboardDTO();
 		imageboardDTO.setImageId(imageId);

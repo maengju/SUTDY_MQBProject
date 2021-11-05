@@ -3,5 +3,6 @@
 <script>
 window.onload=function(){
 	alert("image 등록 완료");
+	location.href="/MQBProject/imageboard/imageboardList.do?pg=1";
 }
 </script>

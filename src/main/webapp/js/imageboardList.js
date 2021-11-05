@@ -2,7 +2,7 @@ $(function(){
 	$.ajax({
 		url:'/MQBProject/imageboard/getImageboardList.do'
 		,type:'post'
-		,data:'pg='+$('#pg').val()
+		,data:'pg='+$('#pg').val() //{'pg':$('#pg').val()} jsonType
 		,dataType:'json'
 		,success: function(data){
 			console.log(JSON.stringify(data));
@@ -11,7 +11,10 @@ $(function(){
 				.append($('<td>',{
 					align:'center',
 					text: items.seq
-				})).append($('<td>')
+				}).prepend($('<input/>',{
+					type:'checkbox',
+					class:'check'
+				}))).append($('<td>')
 				.append(
 					$('<img>',{
 						href:'#',
@@ -20,30 +23,50 @@ $(function(){
 						id: 'image1_'+items.seq,
 						alt : items.image1
 					})
-				)).append($('<td>',{
+				)).append($('<td>')
+				.append($('<a>',{
+						href:'#',
+						align:'center',
+						text:items.imageName,
+						class:'subjectA',
+						id: 'imageName_'+items.seq
+				}))).append($('<td>',{
 					align:'center',
-					text:items.imageName
-				})).append($('<td>',{
-					align:'center',
-					text:items.imagePrice+'원'
+					text:items.imagePrice.toLocaleString()+'원'
 				})).append($('<td>',{
 					align:'center',
 					text:items.imageQty
 				})).append($('<td>',{
 					align:'center',
-					text:(items.imagePrice)*(items.imageQty)+'원'
+					text:((items.imagePrice)*(items.imageQty)).toLocaleString()+'원'
 				})).appendTo($('#imageboardListTable'));
 				
+				
+				
+				
+				
 				$('#image1_'+items.seq).click(function(){
-					alert("asdf");
-				})
+					alert("image1_");
+				});
+				
+				
+				$('#imageName_'+items.seq).click(function(){
+					alert("imageName_");
+				});
+				
 			});//each
 			
-			$('#imageboardPagingDiv').html(data.boardPaging);
+			
+			$('#imageboardPagingDiv').html(data.imageboardPaging);
 		}
 		,error(err){
 			console.log(err);
 		}
 	});//ajax
+	
+	
+	
+	
+	
 	
 });

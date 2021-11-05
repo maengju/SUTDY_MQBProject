@@ -34,6 +34,7 @@
 				data:$('#writeForm').serialize(),
 				success:function(){
 					alert("회원가입을 환영합니다.");
+					location.href='/MQBProject/index.jsp'
 				},
 				error:function(err){
 					console.log(err);

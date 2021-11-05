@@ -13,6 +13,7 @@ import com.control.CommandProcess;
 
 import board.bean.BoardPaging;
 import imageboard.bean.ImageboardDTO;
+import imageboard.bean.ImageboardPaging;
 import imageboard.dao.ImageboardDAO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -21,6 +22,7 @@ public class GetImageboardListService implements CommandProcess  {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		
 		//data
@@ -45,12 +47,12 @@ public class GetImageboardListService implements CommandProcess  {
 		//paging처리
 		int totalA= imageboardDAO.getTotalA();
 		
-		BoardPaging boardPaging = new BoardPaging();
-		boardPaging.setCurrentPage(pg);
-		boardPaging.setPageBlock(3);
-		boardPaging.setPageSize(3);
-		boardPaging.setTotalA(totalA);
-		boardPaging.makePagingHTML();
+		ImageboardPaging imageboardPaging = new ImageboardPaging();
+		imageboardPaging.setCurrentPage(pg);
+		imageboardPaging.setPageBlock(3);
+		imageboardPaging.setPageSize(3);
+		imageboardPaging.setTotalA(totalA);
+		imageboardPaging.makePagingHTML();
 				
 		//list -> JSON 변환
 		JSONObject json = new JSONObject();
@@ -79,7 +81,7 @@ public class GetImageboardListService implements CommandProcess  {
 		//boardpaging json 변환
 		JSONObject paging = new JSONObject();
 		
-		json.put("boardPaging", boardPaging.getPagingHTML().toString());
+		json.put("imageboardPaging", imageboardPaging.getPagingHTML().toString());
 		
 		System.out.println("json = "+json);
 		

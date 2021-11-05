@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="getTotalA" resultType="int">
- 		select count(*) from board
+ 		select count(*) from imageboard
  	</select>
 
 </mapper>
