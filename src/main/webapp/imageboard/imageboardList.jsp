@@ -33,7 +33,7 @@ img.subjectA{
 
 
 
-<form id ="imageboardDeleteForm">
+<form id ="imageboardDeleteForm" method="post" action="/MQBProject/imageboard/imageboardDelete.do">
 
 <input type="hidden" id="pg" value="${requestScope.pg }">
 <input type="hidden" id="imageboardId" value="${memId }">
@@ -82,18 +82,9 @@ $('#choiseDeleteBtn').click(function(){
 	if(count==0){
 		alert('선택된 이미지가 없습니다.');
 	}else{
-		$.ajax({
-			url:'',
-			type:'post',
-			data:'',
-			dataType:'',
-			success:function(data){
-				
-			},
-			error:function(err){
-				console.log(err);
-			}
-		});
+		if(confirm('삭제하시겠습니까?')){
+			$('#imageboardDeleteForm').submit();
+		}
 	}
 });
 

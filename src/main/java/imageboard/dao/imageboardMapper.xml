@@ -26,5 +26,13 @@
 	<select id="getTotalA" resultType="int">
  		select count(*) from imageboard
  	</select>
+ 	
+ 	
+ 	<delete id="imageboardDelete" parameterType="java.util.Map">
+ 		delete imageboard where seq in 
+ 		<foreach collection="check" item="seq" open="(" close=")" separator=",">
+ 			#{seq}
+ 		</foreach>
+ 	</delete>
 
 </mapper>

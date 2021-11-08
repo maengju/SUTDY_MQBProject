@@ -2,6 +2,7 @@ package imageboard.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,6 +67,20 @@ public class ImageboardDAO {
 		int totalA = sqlSession.selectOne("imageboardSQL.getTotalA");
 		sqlSession.close();
 		return totalA;
+	}
+
+
+
+	public void imageboardDelete(String[] check) {
+		
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("check", check);
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		sqlSession.delete("imageboardSQL.imageboardDelete", map);
+		sqlSession.commit();
+		sqlSession.close();
 	}
 	
 	

@@ -13,7 +13,9 @@ $(function(){
 					text: items.seq
 				}).prepend($('<input/>',{
 					type:'checkbox',
-					class:'check'
+					class:'check',
+					name:'check',
+					value:items.seq
 				}))).append($('<td>')
 				.append(
 					$('<img>',{
@@ -43,15 +45,13 @@ $(function(){
 				
 				
 				
-				
-				
-				$('#image1_'+items.seq).click(function(){
-					alert("image1_");
+				$('#img_'+items.seq).click(function(){
+					alert("img");
 				});
 				
 				
-				$('#imageName_'+items.seq).click(function(){
-					alert("imageName_");
+				$('#name_'+items.seq).click(function(){
+					alert("name");
 				});
 				
 			});//each
@@ -59,7 +59,7 @@ $(function(){
 			
 			$('#imageboardPagingDiv').html(data.imageboardPaging);
 		}
-		,error(err){
+		,error:function(err){
 			console.log(err);
 		}
 	});//ajax
